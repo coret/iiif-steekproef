@@ -8,7 +8,7 @@
  *
  * Levert de metadata én de distributies op. De metadata is de terugval voor de
  * titel; de distributies zijn er alleen voor de workaround-route, die de dump
- * uitleest als het DKG niets bruikbaars vastlegt.
+ * uitleest als de DKG niets bruikbaars vastlegt.
  */
 import { Distribution } from '@lde/dataset';
 import {

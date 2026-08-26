@@ -2,7 +2,7 @@
  * iiif-steekproef
  *
  * Publiceert per dataset een IIIF Presentation 3 Collection met de manifesten
- * die het NDE Dataset Knowledge Graph van die dataset kent.
+ * die de NDE Dataset Knowledge Graph van die dataset kent.
  *
  *   npx tsx src/sampler.ts                    # alle datasets uit datasets.txt
  *   npx tsx src/sampler.ts <dataset-URI> ...  # alleen deze
@@ -47,7 +47,7 @@ import { uuidv5 } from './uuid.ts';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DEFAULTS = {
-  /** Het DKG legt er hoogstens tien per dataset vast. */
+  /** De DKG legt er hoogstens tien per dataset vast. */
   count: 10,
   config: resolve(HERE, '../datasets.txt'),
   /** De uitzonderingslijst voor de workaround; ontbreken mag. */
@@ -62,7 +62,7 @@ const DEFAULTS = {
    * Laag met opzet. Alle manifesten van één dataset staan bij dezelfde server,
    * en die servers zijn niet van ons: met 5 tegelijk liep bij Krantenpaginas
    * (Coda Apeldoorn) 4 van de 9 manifesten in een time-out, met 2 laadden ze
-   * alle negen. Nu het DKG er hoogstens tien per dataset kent, is elk verloren
+   * alle negen. Nu de DKG er hoogstens tien per dataset kent, is elk verloren
    * manifest er één te veel.
    */
   concurrency: 2,
@@ -161,11 +161,11 @@ async function main(): Promise<void> {
 
   /* Twee endpoints, twee vragen — allebei één keer voor de hele run --------- */
   const dkg = values.dkg ?? DKG_ENDPOINT;
-  log(`\nManifesten ophalen uit het Dataset Knowledge Graph: ${dkg}`);
+  log(`\nManifesten ophalen uit de Dataset Knowledge Graph: ${dkg}`);
   const known = await fetchKnownManifests(dkg);
   const withManifests = datasetUrls.filter((url) => known.has(url)).length;
   log(
-    `  ${nl(known.size)} datasets met manifesten in het DKG, ` +
+    `  ${nl(known.size)} datasets met manifesten in de DKG, ` +
       `waarvan ${nl(withManifests)} van de ${nl(datasetUrls.length)} uit de lijst`,
   );
 
@@ -350,7 +350,7 @@ interface SampleResult {
  *
  * Lukt het, dan is dat de markering waar de pagina op leunt; lukt het niet, dan
  * de tweede reden — want dan is het nuttiger te weten dat óók de distributie
- * niets opleverde dan alleen dat het DKG niets had.
+ * niets opleverde dan alleen dat de DKG niets had.
  */
 async function runWorkaround(
   datasetUrl: string,
@@ -371,7 +371,7 @@ async function runWorkaround(
   }
 }
 
-/** De gewone keten voor één dataset: de manifesten die het DKG kent. */
+/** De gewone keten voor één dataset: de manifesten die de DKG kent. */
 async function sampleDataset(
   datasetUrl: string,
   known: KnownManifests | undefined,
@@ -380,7 +380,7 @@ async function sampleDataset(
 ): Promise<SampleResult> {
   if (!known || known.manifests.length === 0) {
     throw new SampleFailure(
-      "Het Dataset Knowledge Graph legt van deze dataset geen manifest-IRI's vast.",
+      "De Dataset Knowledge Graph legt van deze dataset geen manifest-IRI's vast.",
       'geen-manifest-iris',
     );
   }
@@ -398,7 +398,7 @@ async function sampleDataset(
 }
 
 /**
- * De workaround: de manifesten uit de RDF-distributie in plaats van uit het DKG.
+ * De workaround: de manifesten uit de RDF-distributie in plaats van uit de DKG.
  *
  * Alleen voor URI's uit `etc/workaround-uris.txt`, en alleen nadat de gewone weg
  * is mislukt. De dump downloaden en uitlezen is duur genoeg om er niet standaard

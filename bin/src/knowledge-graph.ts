@@ -1,5 +1,5 @@
 /**
- * De IIIF-manifesten die het NDE Dataset Knowledge Graph van een dataset kent.
+ * De IIIF-manifesten die de NDE Dataset Knowledge Graph van een dataset kent.
  *
  * NDE valideert per dataset een steekproef IIIF-manifesten met SHACL en legt
  * met PROV vast wélke manifesten daarbij zijn opgehaald. Precies díe IRI's
@@ -15,14 +15,14 @@ export const DKG_ENDPOINT =
   'https://sparql.netwerkdigitaalerfgoed.nl/dataset-knowledge-graph';
 
 export interface KnownManifests {
-  /** Het aantal IIIF-manifesten dat het DKG aan de dataset toeschrijft. */
+  /** Het aantal IIIF-manifesten dat de DKG aan de dataset toeschrijft. */
   total: number;
   /** De manifest-IRI's die NDE's validatie daadwerkelijk heeft gebruikt. */
   manifests: string[];
 }
 
 /**
- * De vorm waarin het DKG dit vastlegt:
+ * De vorm waarin de DKG dit vastlegt:
  *
  *   <dataset>            void:subset      <subset> .
  *   <subset>             dct:conformsTo   <http://iiif.io/api/presentation/> ;

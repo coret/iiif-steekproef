@@ -24,7 +24,7 @@ Voortgang gaat naar stderr, de gepubliceerde URL's naar stdout.
 
 ## Wat het doet
 
-1. **Manifesten opvragen bij het Dataset Knowledge Graph**
+1. **Manifesten opvragen bij de Dataset Knowledge Graph**
    (`bin/src/knowledge-graph.ts`). NDE valideert per dataset een steekproef
    IIIF-manifesten met SHACL en legt met PROV vast wélke manifesten het daarbij
    heeft opgehaald. Precies die IRI's halen we op — één SPARQL-query voor alle
@@ -49,7 +49,7 @@ testen met een andere basis-URL:
 npx tsx src/render.ts --base-url http://localhost:8099
 ```
 
-## Waarom het DKG en niet de RDF-dumps
+## Waarom de DKG en niet de RDF-dumps
 
 De eerste versie deed het anders: datasetbeschrijving ophalen, distributie
 kiezen, de hele RDF-dump downloaden en streamend parsen, en daaruit zelf alle
@@ -63,17 +63,17 @@ eens altijd meer op:
   deelstrings van de leesbuffer, en wie er één bewaart houdt de hele chunk in
   leven — gemeten 13,6 KB heap per bewaarde URI van ~70 bytes.
 - **De dump wist het soms niet.** In diezelfde FEHAC-dump komt het woord `iiif`
-  geen enkele keer voor, terwijl het DKG er ruim een miljoen manifesten aan
+  geen enkele keer voor, terwijl de DKG er ruim een miljoen manifesten aan
   toeschrijft — en tien concrete manifest-IRI's van kent.
 
 Die dump-route is overigens niet verdwenen maar gedegradeerd tot uitzondering:
 zie [Workaround](#workaround-toch-uit-de-distributie) voor de handvol datasets
 waar hij nog wél de enige weg is.
 
-Wat het kost: het DKG legt **hoogstens tien manifesten per dataset** vast, en
+Wat het kost: de DKG legt **hoogstens tien manifesten per dataset** vast, en
 elke run zijn dat dezelfde tien. Het is dus NDE's steekproef en niet elke keer
 een verse eigen greep. Van de 135 datasets in `bin/datasets.txt` hebben er
-**84 manifesten in het DKG**, samen 673 IRI's; bij de overige 51 heeft NDE's
+**84 manifesten in de DKG**, samen 673 IRI's; bij de overige 51 heeft NDE's
 IIIF-validatie wél gedraaid maar geen enkel manifest vastgelegd.
 
 De run van 26 augustus 2026 leverde daarmee **55 datasets met 433 manifesten**
@@ -101,7 +101,7 @@ verdwijnt geen enkele afkeuring in het log.
   meest sprekende fout van de site: een bron waarvan álle manifesten stuk zijn,
   stond nergens meer.
 - **Gegroepeerd per soort probleem**, met het aantal in de kop: geen
-  manifest-IRI's in het DKG, geen enkel manifest dat laadt (uitgesplitst naar
+  manifest-IRI's in de DKG, geen enkel manifest dat laadt (uitgesplitst naar
   HTTP-fout, laadt niet in een viewer, time-out, server onbereikbaar,
   verschillende oorzaken), of anders mislukt. De run zet die categorie zelf in
   de ledger (`category` en `detail`); staat hij er niet in, dan leidt de pagina
@@ -114,16 +114,16 @@ verdwijnt geen enkele afkeuring in het log.
 - **Zelf nakijken.** Achter elke overgeslagen dataset staat een **SPARQL**-link
   naar [YASGUI](https://yasgui.coret.org/), met het DKG-endpoint en een query
   die de manifest-IRI's van precies die dataset opvraagt. Geen resultaten is
-  daar een antwoord en geen storing: dan kent het DKG er geen. Komen er wél
+  daar een antwoord en geen storing: dan kent de DKG er geen. Komen er wél
   IRI's uit, dan ligt het aan de manifesten zelf — de reden ernaast zegt welke.
   De link wordt gebouwd in `yasguiUrl()` in `bin/src/site.ts`; de query is
   dezelfde als in `bin/src/knowledge-graph.ts`, op één dataset toegespitst.
 
 ## Workaround: toch uit de distributie
 
-Voor sommige datasets legt het DKG niets bruikbaars vast terwijl de
+Voor sommige datasets legt de DKG niets bruikbaars vast terwijl de
 RDF-distributie wél deugt. `KW - Kamp Westerbork - Collecties` is het
-schoolvoorbeeld: nul manifest-IRI's in het DKG, 15.101 in de dump.
+schoolvoorbeeld: nul manifest-IRI's in de DKG, 15.101 in de dump.
 
 Staat een dataset-URI in `etc/workaround-uris.txt`, dan wordt **na** een mislukte
 DKG-route alsnog de distributie opgehaald en daar een steekproef van 25
@@ -135,7 +135,7 @@ https://kenniscentrum.kampwesterbork.nl/atlantispubliek/data/dataset/KW+-+Kamp+W
 ```
 
 De foutmelding blijft staan, met `verwerkt via workaround` erachter. Dat is geen
-slordigheid: dát het DKG niets had blijft waar, en zo is te zien dat die dataset
+slordigheid: dát de DKG niets had blijft waar, en zo is te zien dat die dataset
 langs een andere weg in de index kwam. Mislukt de workaround ook, dan komt die
 tweede reden erbij in plaats van de markering.
 
@@ -246,7 +246,7 @@ staan, zodat een eerder gedeelde collection-URL blijft werken.
 ## Datasets zoeken
 
 `bin/src/discover.ts` vult `bin/datasets.txt` aan met datasets die
-IIIF-manifesten bevatten, gevonden in het NDE Dataset Knowledge Graph:
+IIIF-manifesten bevatten, gevonden in de NDE Dataset Knowledge Graph:
 
 ```sh
 npx tsx src/discover.ts --dry-run   # toon wat erbij zou komen
@@ -260,7 +260,7 @@ geen zelfbedachte heuristiek. De titels komen uit het Dataset Register; haalt
 dat niet, dan gaat het toevoegen gewoon door en staat er `(geen titel in het
 register)` boven de URI.
 
-Let op: dat criterium zegt dat er IIIF ín de dataset zit, niet dat het DKG er
+Let op: dat criterium zegt dat er IIIF ín de dataset zit, niet dat de DKG er
 manifest-IRI's van kent. Een dataset kan dus keurig gevonden worden en bij het
 bemonsteren alsnog afvallen.
 
@@ -323,20 +323,20 @@ is, ook als hij ooit ergens anders komt te staan.
   tweederde van de manifesten een `null` waar een Canvas hoort. Bij
   `FEHAC - Beelddocumenten - Wegvoertuigen` staat een `null` waar de
   annotatielijst hoort, en klapt `normalize()` eruit op *Cannot read properties
-  of null*; alle tien manifesten die het DKG van die dataset kent lopen daarop
+  of null*; alle tien manifesten die de DKG van die dataset kent lopen daarop
   stuk, dus die dataset valt in zijn geheel af. Zulke manifesten renderen in
   geen enkele Vault-viewer, dus stap 3 filtert ze eruit en meldt het.
 - **Te veel tegelijk is te veel.** Alle manifesten van één dataset staan bij
   dezelfde server. Met vijf gelijktijdige verzoeken liep bij `Krantenpaginas`
   (Coda Apeldoorn) 4 van de 9 manifesten in een time-out; met twee laadden ze
   alle negen. Vandaar `--concurrency 2` als standaard.
-- **Tellingen die niet over de distributie gaan.** Het DKG schrijft aan
+- **Tellingen die niet over de distributie gaan.** De DKG schrijft aan
   `FEHAC - Beelddocumenten - Wegvoertuigen` ruim een miljoen IIIF-manifesten
   toe, maar de RDF/XML-distributie die je kunt downloaden bevat 34 miljoen
   triples zonder één vermelding van `iiif`. De telling en de distributie die er
   nu staat gaan dus niet over hetzelfde.
 - **Manifest-IRI's die nergens heen wijzen.** Bij `Centraal Museum` zijn alle
-  tien manifesten die het DKG kent `n2t.net/ark:`-URI's, en vijf daarvan geven
+  tien manifesten die de DKG kent `n2t.net/ark:`-URI's, en vijf daarvan geven
   een 404. De IRI is dus persistent bedoeld maar niet resolvebaar; de steekproef
   houdt er vier over en toont de vijf 404's erbij.
 - **Geen `Last-Modified`.** De Atlantis-servers sturen bij een distributie wel

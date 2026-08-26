@@ -1,7 +1,7 @@
 /**
  * De workaround-route: manifest-IRI's rechtstreeks uit de RDF-distributie.
  *
- * De gewone weg loopt via het Dataset Knowledge Graph. Voor sommige datasets
+ * De gewone weg loopt via de Dataset Knowledge Graph. Voor sommige datasets
  * legt dat niets bruikbaars vast terwijl de distributie wél deugt; die staan in
  * `etc/workaround-uris.txt` en komen hier terecht.
  *

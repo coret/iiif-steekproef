@@ -1,7 +1,7 @@
 /**
  * iiif-steekproef — datasets met IIIF opzoeken
  *
- * Zoekt in het NDE Dataset Knowledge Graph naar datasets die IIIF-manifesten
+ * Zoekt in de NDE Dataset Knowledge Graph naar datasets die IIIF-manifesten
  * bevatten en vult daarmee het configuratiebestand aan.
  *
  *   npx tsx src/discover.ts [opties]
@@ -27,7 +27,7 @@ const DEFAULTS = {
 };
 
 /**
- * De vorm waarmee het Dataset Knowledge Graph vastlegt dat er IIIF in een
+ * De vorm waarmee de Dataset Knowledge Graph vastlegt dat er IIIF in een
  * dataset zit. Dit is de definitie die NDE's eigen indexer gebruikt
  * (dataset-register, packages/search-indexer/src/dkg-source.ts), geen
  * zelfbedachte heuristiek.

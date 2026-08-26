@@ -21,10 +21,10 @@ export interface CatalogEntry {
   datasetDescription?: string;
   publisher?: string;
   sampled: number;
-  /** Wat het DKG als aantal IIIF-manifesten in de dataset opgeeft. */
+  /** Wat de DKG als aantal IIIF-manifesten in de dataset opgeeft. */
   totalFound: number;
   /**
-   * Het aantal manifest-IRI's dat de bron van deze dataset opleverde: uit het
+   * Het aantal manifest-IRI's dat de bron van deze dataset opleverde: uit de
    * DKG, of uit de distributie bij een workaround.
    */
   known: number;
@@ -379,16 +379,16 @@ function markering(reason: string): string {
 }
 
 /**
- * De query die laat zien wat het DKG van deze dataset aan manifesten vastlegt.
+ * De query die laat zien wat de DKG van deze dataset aan manifesten vastlegt.
  *
  * Dezelfde vorm als in `knowledge-graph.ts`, op één dataset toegespitst — ook
  * de `BIND` in plaats van een `FILTER` binnen een `OPTIONAL`, want dat laatste
  * bindt deze endpoint niet. Geen resultaten is hier een antwoord en geen fout:
- * dan kent het DKG er geen, en valt er dus niets te bemonsteren.
+ * dan kent de DKG er geen, en valt er dus niets te bemonsteren.
  */
 function dkgQuery(datasetUrl: string): string {
-  return `# De IIIF-manifesten die het NDE Dataset Knowledge Graph van deze dataset vastlegt.
-# Geen resultaten? Dan kent het DKG er geen, en valt er niets te bemonsteren.
+  return `# De IIIF-manifesten die de NDE Dataset Knowledge Graph van deze dataset vastlegt.
+# Geen resultaten? Dan kent de DKG er geen, en valt er niets te bemonsteren.
 PREFIX void: <http://rdfs.org/ns/void#>
 PREFIX dct:  <http://purl.org/dc/terms/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
@@ -404,7 +404,7 @@ SELECT ?manifest WHERE {
 }`;
 }
 
-/** De query klaargezet in YASGUI, tegen het DKG. */
+/** De query klaargezet in YASGUI, tegen de DKG. */
 function yasguiUrl(datasetUrl: string, title: string): string {
   const parameters = {
     query: dkgQuery(datasetUrl),
@@ -434,7 +434,8 @@ function yasguiUrl(datasetUrl: string, title: string): string {
  */
 function categoryOf(failure: DatasetFailure): FailureCategory {
   if (failure.category !== undefined) return failure.category;
-  if (failure.reason.startsWith('Het Dataset Knowledge Graph legt')) return 'geen-manifest-iris';
+  // Ook "Het ...": zo heette de melding voordat het lidwoord werd gecorrigeerd.
+  if (/^(De|Het) Dataset Knowledge Graph legt/.test(failure.reason)) return 'geen-manifest-iris';
   if (failure.reason.startsWith('Geen enkel manifest laadt')) return 'laadt-niet';
   return 'overig';
 }
@@ -454,7 +455,7 @@ function detailOf(failure: DatasetFailure): string | undefined {
 }
 
 const CATEGORY_LABELS: Record<FailureCategory, string> = {
-  'geen-manifest-iris': "het Dataset Knowledge Graph legt geen manifest-IRI's vast",
+  'geen-manifest-iris': "de Dataset Knowledge Graph legt geen manifest-IRI's vast",
   'laadt-niet': 'geen enkel manifest laadt',
   overig: 'anders mislukt',
 };
@@ -509,7 +510,7 @@ ${items}
         failures.length === 1 ? 'dataset' : 'datasets'
       } zonder bruikbare steekproef</summary>
       <p>
-        Van deze datasets legt het Dataset Knowledge Graph geen manifesten vast, of laadde
+        Van deze datasets legt de Dataset Knowledge Graph geen manifesten vast, of laadde
         geen enkel manifest dat het wél kent. Per soort probleem bij elkaar gezet.
       </p>
 ${blocks}
@@ -551,12 +552,12 @@ function renderFailure(
  */
 /**
  * Waar de steekproef vandaan komt. Twee routes, twee verhalen: normaal de
- * manifesten die het DKG vastlegt, en bij een workaround de dump zelf.
+ * manifesten die de DKG vastlegt, en bij een workaround de dump zelf.
  */
 function herkomst(entry: CatalogEntry): string {
   return entry.source === 'distributie'
     ? `${nl(entry.known)} manifesten in de RDF-distributie (workaround)`
-    : `${nl(entry.known)} manifesten vastgelegd in het NDE Dataset Knowledge Graph`;
+    : `${nl(entry.known)} manifesten vastgelegd in de NDE Dataset Knowledge Graph`;
 }
 
 function corsNotes(entry: CatalogEntry): string[] {
@@ -686,7 +687,7 @@ ${options}
 <main class="site stack">
   <section>
     <p class="lead">
-      De IIIF-manifesten die het NDE Dataset Knowledge Graph van een erfgoeddataset kent,
+      De IIIF-manifesten die de NDE Dataset Knowledge Graph van een erfgoeddataset kent,
       gebundeld als IIIF Presentation 3 Collection. Elk manifest is vooraf gecontroleerd op
       of het daadwerkelijk laadt; wat afvalt staat er met reden bij.
       Kies een dataset om de steekproef door te bladeren.

@@ -44,7 +44,7 @@ export function buildCollection(input: CollectionInput): Record<string, unknown>
     summary: {
       [language]: [
         `Steekproef van ${entries.length} IIIF-manifesten uit de ` +
-          `${totalFound.toLocaleString('nl-NL')} die het NDE Dataset Knowledge Graph ` +
+          `${totalFound.toLocaleString('nl-NL')} die de NDE Dataset Knowledge Graph ` +
           `aan deze dataset toeschrijft, samengesteld op ${created.slice(0, 10)}.`,
       ],
     },
@@ -55,9 +55,9 @@ export function buildCollection(input: CollectionInput): Record<string, unknown>
           nl: [
             input.source === 'distributie'
               ? `Gecontroleerde steekproef uit de ${input.known.toLocaleString('nl-NL')} ` +
-                'IIIF-manifesten in de RDF-distributie van deze dataset, omdat het NDE ' +
+                'IIIF-manifesten in de RDF-distributie van deze dataset, omdat de NDE ' +
                 'Dataset Knowledge Graph er geen bruikbare vastlegt.'
-              : `De ${input.known} manifesten die het NDE Dataset Knowledge Graph van deze ` +
+              : `De ${input.known} manifesten die de NDE Dataset Knowledge Graph van deze ` +
                 "dataset vastlegt, opgehaald bij NDE's eigen SHACL-validatie.",
           ],
         },

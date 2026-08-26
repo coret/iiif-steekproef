@@ -2,7 +2,7 @@
  * Datasetmetadata uit het NDE Dataset Register.
  *
  * Zolang de manifesten uit de datasetbeschrijving van de uitgever zelf kwamen,
- * kwam de titel daar ook vandaan. Nu de manifesten uit het Dataset Knowledge
+ * kwam de titel daar ook vandaan. Nu de manifesten uit de Dataset Knowledge
  * Graph komen, hoeft die beschrijving niet meer opgehaald te worden — en dan is
  * het register de aangewezen bron: één query levert de metadata van alle
  * datasets tegelijk, in plaats van 135 losse verzoeken aan evenzoveel servers.

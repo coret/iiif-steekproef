@@ -1,5 +1,5 @@
 /**
- * Trekt een steekproef uit de manifest-IRI's die het Dataset Knowledge Graph
+ * Trekt een steekproef uit de manifest-IRI's die de Dataset Knowledge Graph
  * van een dataset kent, en houdt alleen de manifesten over die écht laden.
  */
 import { validateManifest } from '@lde/iiif-validator';
@@ -130,7 +130,7 @@ export interface ManifestEntry {
  * dataset als een werkend manifest, dus wordt het bewaard en getoond.
  */
 export interface Rejection {
-  /** De manifest-IRI zoals het DKG die kent. */
+  /** De manifest-IRI zoals de DKG die kent. */
   uri: string;
   /** Grove reden, van de validator of van onze eigen inhoudscontrole. */
   reason: string;
