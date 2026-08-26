@@ -1,0 +1,410 @@
+# iiif-steekproef — datasets waarvan een steekproef wordt getrokken.
+# Eén datasetbeschrijving-URI per regel. Regels met # ervoor worden overgeslagen.
+#
+# Elke run wordt van elke dataset opnieuw een steekproef getrokken. De
+# collection-URL van een dataset blijft daarbij gelijk (UUIDv5 van de URI),
+# dus gedeelde links blijven werken.
+
+https://kenniscentrum.kampwesterbork.nl/atlantispubliek/data/dataset/KW+-+Kamp+Westerbork+-+Collecties
+https://kenniscentrum.kampwesterbork.nl/atlantispubliek/data/dataset/KW+-+Kamp+Westerbork+-+Personen
+
+# --- gevonden met src/discover.ts op 26 augustus 2026 ---
+
+# FEHAC - Beelddocumenten - Wegvoertuigen — 1.027.034 manifesten
+https://fehac.hosting.deventit.net/AtlantisPubliek/data/dataset/FEHAC+-+Beelddocumenten+-+Wegvoertuigen
+
+# Netherlands Photo Museum — 342.828 manifesten
+https://n2t.net/ark:/63961/dataset
+
+# LOD Archiefbeschrijvingen — 319.888 manifesten
+https://archief.literatuurmuseum.nl/AtlantisPubliek/data/dataset/LOD+Archiefbeschrijvingen
+
+#  Gouda Timemachine 🕓 Knowledge Graph — 221.541 manifesten
+https://n2t.net/ark:/60537/bD64Hu
+
+# Dataset Rijksmuseum van Oudheden (RMO) — 217.889 manifesten
+https://rmo.cithosting.nl/nde/dataset.jsonld
+
+# LOD Persoon en Organisatie — 117.905 manifesten
+https://archief.literatuurmuseum.nl/AtlantisPubliek/data/dataset/LOD+Persoon+en+Organisatie
+
+# Krantenpaginas — 104.276 manifesten
+https://deventit.coda-apeldoorn.nl/AtlantisPubliek/data/dataset/Krantenpaginas
+
+# Teylers Museum — 84.601 manifesten
+https://n2t.net/ark:/72166/dataset
+
+# Museum objecten — 55.815 manifesten
+https://collectie.museumrotterdam.nl/AtlantisPubliek/data/dataset/Museum+objecten
+
+# Nederlands Openluchtmuseum — 55.434 manifesten
+https://www.ldmax.nl/datasets/Q674449/collectie
+
+# LOD Beelddocumenten — 55.174 manifesten
+https://studiezaal.nijmegen.nl/AtlantisPubliek/data/dataset/LOD+Beelddocumenten
+
+# Geheugen van Zoetermeer - Beelddocumenten — 49.927 manifesten
+https://zoeken.geheugenvanzoetermeer.nl/AtlantisPubliek/data/dataset/Geheugen+van+Zoetermeer+-+Beelddocumenten
+
+# Collectie Huis van Hilde - Archeologische vindplaatsen — 49.634 manifesten
+https://collectie.huisvanhilde.nl/nde/dataset_sites.jsonld
+
+# Beelddocumenten — 44.657 manifesten
+https://deventit.coda-apeldoorn.nl/AtlantisPubliek/data/dataset/Beelddocumenten
+
+# Dataset Beeldbank Erfgoed 's-Hertogenbosch — 43.963 manifesten
+https://denbosch.hosting.deventit.net/AtlantisPubliek/data/dataset/Dataset+Beeldbank+Erfgoed+%27s-Hertogenbosch
+
+# Beelddocumenten — 40.084 manifesten
+https://collecties.erfgoedenschede.nl/AtlantisPubliek/data/dataset/Beelddocumenten
+
+# MHD - Alle museale objecten — 39.540 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/MHD+-+Alle+museale+objecten
+
+# Groninger Museum — 39.099 manifesten
+https://n2t.net/ark:/57463/dataset
+
+# Collectie Huis van Hilde - Archeologische vondsten — 37.094 manifesten
+https://collectie.huisvanhilde.nl/nde/dataset_objects.jsonld
+
+# Centraal Museum — 36.884 manifesten
+https://www.ldmax.nl/datasets/Q260913/collectie
+
+# BAT - Stichting Erfgoedpark Batavialand - Document — 35.444 manifesten
+https://collectie.batavialand.nl/AtlantisPubliek/data/dataset/BAT+-+Stichting+Erfgoedpark+Batavialand+-+Document
+
+# Oorlogsbronnen - Krantenpaginas — 31.646 manifesten
+https://digitaal-geheugen.peelenmaasnet.nl/AtlantisPubliek/data/dataset/Oorlogsbronnen+-+Krantenpaginas
+
+# Museumfederatie Fryslân - Museum objecten — 31.405 manifesten
+https://onserfgoed.noorderstruun.nl/AtlantisPubliek/data/dataset/Museumfederatie+Frysl%c3%a2n+-+Museum+objecten
+
+# FORT - Museum objecten — 23.008 manifesten
+https://collectie.fortresseholland.nl/AtlantisPubliek/data/dataset/FORT+-+Museum+objecten
+
+# Haags Historisch Museum/Rijksmuseum De Gevangenpoort — 14.425 manifesten
+https://n2t.net/ark:/46860/dataset
+
+# MHM - Moluks Historisch Museum - Beeldbank — 14.069 manifesten
+https://collecties.museum-maluku.nl/AtlantisPubliek/data/dataset/MHM+-+Moluks+Historisch+Museum+-+Beeldbank
+
+# Zuid-Afrikahuis - Archieven — 14.017 manifesten
+https://collecties.zuidafrikahuis.nl/AtlantisPubliek/data/dataset/Zuid-Afrikahuis+-+Archieven
+
+# Gazelle Beelddocumenten — 13.101 manifesten
+https://pon.hosting.deventit.net/AtlantisPubliek/data/dataset/Gazelle+Beelddocumenten
+
+# RoMeO-ROVM-dataset-alle-objecten — 9.203 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/RoMeO-ROVM-dataset-alle-objecten
+
+# Nederlands Zilvermuseum Schoonhoven — 8.908 manifesten
+https://n2t.net/ark:/81744/dataset
+
+# Collection Jan Menze van Diepen — 8.808 manifesten
+https://n2t.net/ark:/32838/dataset
+
+# Historische kring Eemnes — 7.653 manifesten
+https://hdl.handle.net/20.500.14876/dataset
+
+# Museum Jan Heestershuis — 6.956 manifesten
+https://hdl.handle.net/20.500.14780/dataset
+
+# Zeeuws erfgoedplatform - Museum objecten — 6.442 manifesten
+https://zoeken.collectiezeeland.nl/AtlantisPubliek/data/dataset/Zeeuws+erfgoedplatform+-+Museum+objecten
+
+# Zuid-Afrikahuis - Beelddocumenten — 5.890 manifesten
+https://collecties.zuidafrikahuis.nl/AtlantisPubliek/data/dataset/Zuid-Afrikahuis+-+Beelddocumenten
+
+# Elisabeth Weeshuis Museum — 5.878 manifesten
+https://n2t.net/ark:/69433/dataset
+
+# Keramiekcentrum Tiendschuur Tegelen — 5.703 manifesten
+https://n2t.net/ark:/17449/dataset
+
+# LOD Archieven — 5.125 manifesten
+https://archief.literatuurmuseum.nl/AtlantisPubliek/data/dataset/LOD+Archieven
+
+# Collectie Harry Cock — 5.009 manifesten
+https://www.geheugenvandrenthe.nl/api/dataset/2a4d654b-e5d2-4c15-9b61-4f7d56a7663f
+
+# Historische Vereniging Maassluis Beelddocumenten — 4.167 manifesten
+https://maas.hosting.deventit.net/AtlantisPubliek/data/dataset/Historische+Vereniging+Maassluis+Beelddocumenten
+
+# Collectie Universiteitsmuseum Utrecht — 4.154 manifesten
+https://collections.uu.nl/datacatalog/collection
+
+# Museum objecten — 4.110 manifesten
+https://deventit.coda-apeldoorn.nl/AtlantisPubliek/data/dataset/Museum+objecten
+
+# Beeldmateriaal over Briefhoofden in Weert — 3.844 manifesten
+https://weert.hosting.deventit.net/AtlantisPubliek/data/dataset/Beeldmateriaal+over+Briefhoofden+in+Weert
+
+# Valkhof museum - Museum objecten — 3.682 manifesten
+https://valk.hosting.deventit.net/AtlantisPubliek/data/dataset/Valkhof+museum+-+Museum+objecten
+
+# De Hollandse Cirkel - Museum objecten — 3.226 manifesten
+https://zoeken.hollandsecirkel.nl/AtlantisPubliek/data/dataset/De+Hollandse+Cirkel+-+Museum+objecten
+
+# Online available collection — 3.012 manifesten
+https://collectie.airbornemuseum.nl/datacatalog/nde
+
+# LGBTI Objecten — 2.865 manifesten
+https://search.ihlia.nl/AtlantisPubliek/data/dataset/LGBTI+Objecten
+
+# Theater Instituut Nederland — 2.804 manifesten
+https://www.ldmax.nl/datasets/Q2204530/collectie
+
+# VNVN - Bibliotheek — 2.798 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/VNVN+-+Bibliotheek
+
+# Oorlogsbronnen - Archiefstukken — 2.719 manifesten
+https://pem.hosting.deventit.net/AtlantisPubliek/data/dataset/Oorlogsbronnen+-+Archiefstukken
+
+# Museum objecten — 2.664 manifesten
+https://collectie.hunebedcentrum.eu/AtlantisPubliek/data/dataset/Museum+objecten
+
+# Openluchtmuseum Het Hoogeland — 2.557 manifesten
+https://n2t.net/ark:/45493/dataset
+
+# Verwey Museum Haarlem — 2.371 manifesten
+https://hdl.handle.net/20.500.14879/dataset
+
+# KRIMP - Museum objecten — 2.238 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/KRIMP+-+Museum+objecten
+
+# VNVN - Museum objecten — 2.237 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/VNVN+-+Museum+objecten
+
+# LOD Museale Objecten — 2.210 manifesten
+https://archief.literatuurmuseum.nl/AtlantisPubliek/data/dataset/LOD+Museale+Objecten
+
+# DAF Museum - Museum objecten — 2.209 manifesten
+https://daf.hosting.deventit.net/AtlantisPubliek/data/dataset/DAF+Museum+-+Museum+objecten
+
+# Museum Thorn — 2.107 manifesten
+https://hdl.handle.net/20.500.14764/dataset
+
+# Noordelijk Scheepvaartmuseum — 1.967 manifesten
+https://n2t.net/ark:/77641/dataset
+
+# Beeldmateriaal Tweede Wereldoorlog in Weert — 1.835 manifesten
+https://weert.hosting.deventit.net/AtlantisPubliek/data/dataset/Beeldmateriaal+Tweede+Wereldoorlog+in+Weert
+
+# FEHAC - Beelddocumenten - NCAD — 1.735 manifesten
+https://fehac.hosting.deventit.net/AtlantisPubliek/data/dataset/FEHAC+-+Beelddocumenten+-+NCAD
+
+# Boeken en Tijdschriften — 1.639 manifesten
+https://collecties.erfgoedenschede.nl/AtlantisPubliek/data/dataset/Boeken+en+Tijdschriften
+
+# Geheugen van Zoetermeer - Krantenpagina's — 1.592 manifesten
+https://zoeken.geheugenvanzoetermeer.nl/AtlantisPubliek/data/dataset/Geheugen+van+Zoetermeer+-+Krantenpagina%27s
+
+# Visserijmuseum Zoutkamp — 1.505 manifesten
+https://n2t.net/ark:/58489/dataset
+
+# MHM - Moluks Historisch Museum - Objecten — 1.224 manifesten
+https://collecties.museum-maluku.nl/AtlantisPubliek/data/dataset/MHM+-+Moluks+Historisch+Museum+-+Objecten
+
+# Drapo dataset of Limburg banners, associations, manufacturers and places — 1.071 manifesten
+https://id.drapo.nl/dataset/drapo-schemaorg
+
+# Museumcollectie moderne en hedendaagse kunst — 1.038 manifesten
+https://collecties.chabotmuseum.nl/AtlantisPubliek/data/dataset/Museumcollectie+moderne+en+hedendaagse+kunst
+
+# Museum Nienoord — 1.009 manifesten
+https://n2t.net/ark:/10267/dataset
+
+# Veenkoloniaal Museum — 949 manifesten
+https://n2t.net/ark:/71485/dataset
+
+# Wijkmuseum Soesterkwartier — 850 manifesten
+https://hdl.handle.net/20.500.14590/dataset
+
+# Oorlogsbronnen — 783 manifesten
+https://collecties.erfgoedenschede.nl/AtlantisPubliek/data/dataset/Oorlogsbronnen
+
+# Museum 'Het Behouden Blik' — 739 manifesten
+https://n2t.net/ark:/28391/dataset
+
+# MMZ - Museum objecten — 675 manifesten
+https://zoeken.collectiezeeland.nl/AtlantisPubliek/data/dataset/MMZ+-+Museum+objecten
+
+# Maritime Museum Rotterdam — 665 manifesten
+https://n2t.net/ark:/24974/dataset
+
+# GRID Grafisch Museum Groningen — 633 manifesten
+https://n2t.net/ark:/23262/dataset
+
+# Geheugen van Zoetermeer - Boeken — 587 manifesten
+https://zoeken.geheugenvanzoetermeer.nl/AtlantisPubliek/data/dataset/Geheugen+van+Zoetermeer+-+Boeken
+
+# GON - Genootschap Oud Noordwijk - Museum objecten — 524 manifesten
+https://gon.hosting.deventit.net/AtlantisPubliek/data/dataset/GON+-+Genootschap+Oud+Noordwijk+-+Museum+objecten
+
+# Oorlogsbronnen - Bestanddelen — 522 manifesten
+https://pem.hosting.deventit.net/AtlantisPubliek/data/dataset/Oorlogsbronnen+-+Bestanddelen
+
+# MEV - Museum Engelandvaarders - Museum objecten — 488 manifesten
+https://gon.hosting.deventit.net/AtlantisPubliek/data/dataset/MEV+-+Museum+Engelandvaarders+-+Museum+objecten
+
+# Museum Borg Verhildersum — 483 manifesten
+https://n2t.net/ark:/84481/dataset
+
+# Limburgs Museum — 463 manifesten
+https://n2t.net/ark:/61567/dataset
+
+# Tweede Wereldoorlog (WOII) — 388 manifesten
+https://search.ihlia.nl/AtlantisPubliek/data/dataset/Tweede+Wereldoorlog+(WOII)
+
+# Nationaal Monument Kamp Vught — 385 manifesten
+https://www.ldmax.nl/datasets/Q24033642/collectie
+
+# MMZ - Collectie Vliegend Hert - Museum objecten — 264 manifesten
+https://zoeken.collectiezeeland.nl/AtlantisPubliek/data/dataset/MMZ+-+Collectie+Vliegend+Hert+-+Museum+objecten
+
+# Stichting Van der Wyck-de Kempenaer — 237 manifesten
+https://n2t.net/ark:/16424/dataset
+
+# Museum Klooster Ter Apel — 228 manifesten
+https://n2t.net/ark:/89951/dataset
+
+# HAN - Collectie schilderijen — 198 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/HAN+-+Collectie+schilderijen
+
+# Foundation for Design and Art (DKOR) — 197 manifesten
+https://n2t.net/ark:/85849/dataset
+
+# Beeldmateriaal over Indisch erfgoed in Weert — 178 manifesten
+https://weert.hosting.deventit.net/AtlantisPubliek/data/dataset/Beeldmateriaal+over+Indisch+erfgoed+in+Weert
+
+# Musiom — 163 manifesten
+https://hdl.handle.net/20.500.14613/dataset
+
+# HAN - Collectie zilver website — 153 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/HAN+-+Collectie+zilver+website
+
+# Gerrit van Houten Stichting — 153 manifesten
+https://n2t.net/ark:/29420/dataset
+
+# Museum Wierdenland — 150 manifesten
+https://n2t.net/ark:/15396/dataset
+
+# Oorlogsbronnen - Beelddocumenten — 136 manifesten
+https://digitaal-geheugen.peelenmaasnet.nl/AtlantisPubliek/data/dataset/Oorlogsbronnen+-+Beelddocumenten
+
+# Historische Vereniging Maassluis Oorlogsvoering — 130 manifesten
+https://maas.hosting.deventit.net/AtlantisPubliek/data/dataset/Historische+Vereniging+Maassluis+Oorlogsvoering
+
+# Kasteel Amerongen - Museum objecten — 126 manifesten
+https://collectie.kasteelamerongen.nl/AtlantisPubliek/data/dataset/Kasteel+Amerongen+-+Museum+objecten
+
+# Museum Slager — 103 manifesten
+https://n2t.net/ark:/47887/dataset
+
+# MHD - Eerste Wereldoorlog — 100 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/MHD+-+Eerste+Wereldoorlog
+
+# Digitaal Erfgoed Friesland - Tweede Wereldoorlog — 100 manifesten
+https://onserfgoed.noorderstruun.nl/AtlantisPubliek/data/dataset/Digitaal+Erfgoed+Friesland+-+Tweede+Wereldoorlog
+
+# Beeldbank Tweede Wereldoorlog — 99 manifesten
+https://collecties.erfgoedvangoes.nl/AtlantisPubliek/data/dataset/Beeldbank+Tweede+Wereldoorlog
+
+# HAN - Collectie aardewerk website — 98 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/HAN+-+Collectie+aardewerk+website
+
+# Synagoge Groningen — 97 manifesten
+https://n2t.net/ark:/68065/dataset
+
+# VLA - Museum objecten — 83 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/VLA+-+Museum+objecten
+
+# Bevrijdingsmuseum Zeeland — 77 manifesten
+https://www.ldmax.nl/datasets/Q1852477/collectie
+
+# Moslim Archief — 66 manifesten
+https://hdl.handle.net/20.500.14897/dataset
+
+# MHD - Aziatisch porselein — 40 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/MHD+-+Aziatisch+porselein
+
+# HAN - Collectie maritiem — 37 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/HAN+-+Collectie+maritiem
+
+# MHD - Het koloniale wereldbeeld van Wilhelm II — 34 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/MHD+-+Het+koloniale+wereldbeeld+van+Wilhelm+II
+
+# Noordbrabants Museum — 32 manifesten
+https://n2t.net/ark:/50965/dataset
+
+# Nationaal Bus Museum — 30 manifesten
+https://n2t.net/ark:/42415/dataset
+
+# HAN - Collectie Baur website — 29 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/HAN+-+Collectie+Baur+website
+
+# KEEP - Museum objecten — 28 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/KEEP+-+Museum+objecten
+
+# Digitaal Erfgoed Friesland - Boeken — 26 manifesten
+https://onserfgoed.noorderstruun.nl/AtlantisPubliek/data/dataset/Digitaal+Erfgoed+Friesland+-+Boeken
+
+# MHD - Militaria — 23 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/MHD+-+Militaria
+
+# ENK - Museum objecten — 22 manifesten
+https://enk.hosting.deventit.net/AtlantisPubliek/data/dataset/ENK+-+Museum+objecten
+
+# Historical collection mining, industry and technology Limburg — 17 manifesten
+https://n2t.net/ark:/11978/dataset
+
+# CBGTestsetFamilieadvertenties — 12 manifesten
+https://cbg.hosting.deventit.net/AtlantisPubliek/data/dataset/CBGTestsetFamilieadvertenties
+
+# Axiell — 11 manifesten
+https://n2t.net/ark:/49254/dataset
+
+# Maassluis Museale Objecten — 10 manifesten
+https://maas.hosting.deventit.net/AtlantisPubliek/data/dataset/Maassluis+Museale+Objecten
+
+# Indertied — 9 manifesten
+https://hdl.handle.net/20.500.14682/dataset
+
+# MART - Museum objecten — 8 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/MART+-+Museum+objecten
+
+# Tweede Wereldoorlog gemeente Hellendoorn — 7 manifesten
+https://beeldbank.hellendoorn.nl/AtlantisPubliek/data/dataset/Tweede+Wereldoorlog+gemeente+Hellendoorn
+
+# HAN - Collectie Jansen, WFG website — 7 manifesten
+https://atlantislite.deventit.nl/AtlantisPubliek/data/dataset/HAN+-+Collectie+Jansen%2c+WFG+website
+
+# Oorlogsbronnen - Verhalen — 7 manifesten
+https://digitaal-geheugen.peelenmaasnet.nl/AtlantisPubliek/data/dataset/Oorlogsbronnen+-+Verhalen
+
+# Leudalmuseum — 6 manifesten
+https://hdl.handle.net/20.500.14745/dataset
+
+# Museum de Oude Wolden — 5 manifesten
+https://n2t.net/ark:/55411/dataset
+
+# Historische collectie mijnbouw Limburg (testpublicatie) — 5 manifesten
+https://n2t.net/ark:/86191/dataset
+
+# Museum Kranenburgh — 3 manifesten
+https://n2t.net/ark:/67039/dataset
+
+# SKC - Stichting Kurt Carlsen - Museum objecten — 2 manifesten
+https://gon.hosting.deventit.net/AtlantisPubliek/data/dataset/SKC+-+Stichting+Kurt+Carlsen+-+Museum+objecten
+
+# IMB Verhalen — 1 manifesten
+https://verhalen.inmijnbuurt.org/AtlantisPubliek/data/dataset/IMB+Verhalen
+
+# Museum Møhlmann — 1 manifesten
+https://n2t.net/ark:/64987/dataset
+
+# Historische Scheepswerf Wolthuis — 1 manifesten
+https://n2t.net/ark:/81061/dataset
+
+# Metadata erfgoedobjecten Data-Doe-Dag — 1 manifesten
+https://omeka.netwerkdigitaalerfgoed.nl/api/items/43

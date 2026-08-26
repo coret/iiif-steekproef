@@ -1,0 +1,8 @@
+bin/node_modules/
+
+# Downloadcache van de workaround: opnieuw op te halen, en groot.
+bin/data/
+
+# De publicatiemap wordt volledig gegenereerd — elke run schrijft alle
+# collections, index.html en de ledgers opnieuw. Niets om te versiebeheren.
+root/

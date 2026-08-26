@@ -1,0 +1,15 @@
+# iiif-steekproef — datasets die langs de workaround gaan.
+#
+# Staat een dataset-URI hier, dan wordt na een mislukte DKG-route alsnog de
+# RDF-distributie opgehaald en daar een steekproef van 25 manifesten uit
+# getrokken. De foutmelding blijft gewoon staan, met "* verwerkt via workaround"
+# erachter: dat het Dataset Knowledge Graph niets bruikbaars had, blijft waar.
+#
+# Alleen doen waar het echt helpt — de dump downloaden en uitlezen kost
+# aanzienlijk meer dan een SPARQL-query. Eén URI per regel, # is commentaar.
+
+# 15.101 manifesten in de distributie, geen enkele in het DKG.
+https://kenniscentrum.kampwesterbork.nl/atlantispubliek/data/dataset/KW+-+Kamp+Westerbork+-+Collecties
+
+# Het DKG kent er 6, die geen van alle laden; de distributie bevat er 78.
+https://kenniscentrum.kampwesterbork.nl/atlantispubliek/data/dataset/KW+-+Kamp+Westerbork+-+Personen

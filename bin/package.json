@@ -1,0 +1,30 @@
+{
+  "name": "iiif-catalog-sampler",
+  "version": "1.0.0",
+  "description": "Trekt een willekeurige steekproef IIIF-manifesten uit een datasetbeschrijving en publiceert die als IIIF Collection",
+  "main": "index.js",
+  "scripts": {
+    "sample": "tsx src/sampler.ts",
+    "typecheck": "tsc",
+    "render": "tsx src/render.ts",
+    "discover": "tsx src/discover.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@iiif/parser": "^4.0.1",
+    "@lde/dataset": "^0.7.9",
+    "@lde/dataset-registry-client": "^0.9.3",
+    "@lde/distribution-downloader": "^0.6.8",
+    "@lde/distribution-probe": "^0.2.9",
+    "@lde/iiif-validator": "^0.1.6",
+    "rdf-parse": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.3.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
