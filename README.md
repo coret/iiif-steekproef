@@ -293,18 +293,18 @@ handmatige keuze, en meteen het einde van elke gedeelde link ernaartoe.
 ```
 bin/          deze applicatie (buiten de docroot)
   src/        broncode
-  assets/     statische bestanden die meegaan naar de docroot (het NDE-logo)
+  assets/     statische bestanden die meegaan naar de docroot (logo, favicon)
   data/       downloadcache van de workaround, blijft buiten git
   datasets.txt
 etc/          workaround-uris.txt
 root/         de docroot: index.html, catalogs.json, failures.json,
-              .htaccess, nde-logo.svg
+              .htaccess, bc-logo.png, favicon.ico
   manifests/  de gepubliceerde collections: <uuid>.json
 ```
 
 Alles in `root/` wordt gegenereerd; bewerk daar niets met de hand.
-`nde-logo.svg` komt uit `bin/assets/` en wordt bij elke publicatie opnieuw
-gekopieerd.
+`bc-logo.png` en `favicon.ico` komen uit `bin/assets/` en worden bij elke
+publicatie opnieuw gekopieerd.
 
 ## Apache
 
@@ -352,22 +352,26 @@ is, ook als hij ooit ergens anders komt te staan.
 
 ## Logo
 
-Het logo is dat van het Netwerk Digitaal Erfgoed, overgenomen uit de
-ErfgoedKijker (`public/nde-logo.svg`). Net als daar doet één bestand dienst als
-favicon én als merkteken in de header. Het staat als bronbestand in
-`bin/assets/` en wordt door `publishSite()` meegekopieerd, zodat de
-publicatiemap op zichzelf compleet is en de pagina het logo ook toont als je
-`index.html` rechtstreeks opent.
+Het merkteken in de header is `bc-logo.png`, het beeldmerk van
+[bob.coret.org](https://bob.coret.org/) (daar `root/img/bc.png`). Het favicon is
+`favicon.ico` van diezelfde site: één `.ico` met meerdere formaten erin, die
+browsers ook uit zichzelf op `/favicon.ico` opvragen. Het logo dient daarnaast
+als `apple-touch-icon`.
 
-Het logo is niet vierkant (viewBox 157 x 150). De CSS zet daarom de hoogte
-(`2.5rem`, even hoog als op de ErfgoedKijker) en laat de breedte volgen.
+Beide staan als bronbestand in `bin/assets/` en worden door `publishSite()`
+meegekopieerd, zodat de publicatiemap op zichzelf compleet is en de pagina het
+logo ook toont als je `index.html` rechtstreeks opent.
+
+Het logo is vierkant (256 x 256). De CSS zet de hoogte (`2.5rem`, even hoog als
+op de ErfgoedKijker) en laat de breedte volgen.
 
 ## Onderhoud
 
 Nieuwe Tify-versie: pas `TIFY_VERSION` in `bin/src/site.ts` aan.
 
-Ander logo: vervang `bin/assets/nde-logo.svg` (of pas `LOGO` in
-`bin/src/site.ts` aan) en draai `npx tsx src/render.ts`.
+Ander logo of favicon: vervang `bin/assets/bc-logo.png` of
+`bin/assets/favicon.ico` (of pas `LOGO`/`FAVICON` in `bin/src/site.ts` aan) en
+draai `npx tsx src/render.ts`.
 
 Let op bij `bin/src/site.ts`: de pagina zit in een template literal, dus **geen
 backticks** gebruiken in het ingebedde CSS/JS — die sluiten de string af.

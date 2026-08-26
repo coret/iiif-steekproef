@@ -89,16 +89,19 @@ export function theseusUrl(collectionUrl: string): string {
 const TIFY_VERSION = '0.35.0';
 
 /**
- * Het logo van het Netwerk Digitaal Erfgoed, overgenomen uit de ErfgoedKijker
- * (`public/nde-logo.svg`). Eén bestand doet daar zowel dienst als favicon als
- * als merkteken in de header; hier ook.
+ * Het beeldmerk van bob.coret.org (`root/img/bc.png`), hier het merkteken in de
+ * header. Daarnaast het favicon van diezelfde site: een .ico met meerdere
+ * formaten erin, die browsers ook uit zichzelf op `/favicon.ico` opvragen.
  *
- * Het wordt bij elke publicatie meegekopieerd naar de webmap, zodat die map op
- * zichzelf compleet is en de pagina het logo ook laat zien als je het bestand
- * rechtstreeks opent.
+ * Beide worden bij elke publicatie meegekopieerd naar de webmap, zodat die map
+ * op zichzelf compleet is en de pagina het logo ook laat zien als je het
+ * bestand rechtstreeks opent.
  */
-const LOGO = 'nde-logo.svg';
-const LOGO_SOURCE = resolve(dirname(fileURLToPath(import.meta.url)), '../assets', LOGO);
+const ASSETS = resolve(dirname(fileURLToPath(import.meta.url)), '../assets');
+const LOGO = 'bc-logo.png';
+const LOGO_SOURCE = resolve(ASSETS, LOGO);
+const FAVICON = 'favicon.ico';
+const FAVICON_SOURCE = resolve(ASSETS, FAVICON);
 
 /**
  * Zonder deze header kan een viewer in de browser de collection niet ophalen.
@@ -172,6 +175,7 @@ export async function publishSite(
   await writeFile(join(outputDir, '.htaccess'), HTACCESS, 'utf8');
 
   await copyFile(LOGO_SOURCE, join(outputDir, LOGO));
+  await copyFile(FAVICON_SOURCE, join(outputDir, FAVICON));
 
   return { catalogsPath, indexPath };
 }
@@ -319,11 +323,11 @@ footer.site a:hover{text-decoration:underline}
 `;
 
 /**
- * Even hoog als op de ErfgoedKijker (h-10). Het logo is niet vierkant, dus de
- * breedte volgt uit de hoogte; het `alt`-attribuut is leeg omdat de naam er in
- * de titel ernaast al staat.
+ * Even hoog als op de ErfgoedKijker (h-10); de CSS bepaalt de hoogte, de
+ * afmetingen hier houden alleen de verhouding vast. Het `alt`-attribuut is leeg
+ * omdat de naam er in de titel ernaast al staat.
  */
-const MARK = `<img class="mark" src="${LOGO}" alt="" width="105" height="100">`;
+const MARK = `<img class="mark" src="${LOGO}" alt="" width="256" height="256">`;
 
 /**
  * De pagina draagt zijn eigen gegevens mee in een JSON-blok. Dat scheelt een
@@ -660,7 +664,8 @@ ${options}
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IIIF Steekproef</title>
 <meta name="description" content="Willekeurige steekproeven van IIIF-manifesten uit erfgoeddatasets, gepubliceerd als IIIF Presentation 3 Collections.">
-<link rel="icon" href="${LOGO}" type="image/svg+xml">
+<link rel="icon" href="${FAVICON}" sizes="any">
+<link rel="apple-touch-icon" href="${LOGO}">
 <link rel="preconnect" href="https://rsms.me" crossorigin="anonymous">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tify@${TIFY_VERSION}/dist/tify.css">
