@@ -630,7 +630,7 @@ ${options}
         <p class="who" id="d-publisher"></p>
         <dl>
           <div><dt>Steekproef</dt><dd id="d-sample"></dd></div>
-          <div><dt>Getrokken</dt><dd id="d-created"></dd></div>
+          <div><dt>Gecontroleerd</dt><dd id="d-created"></dd></div>
           <div><dt>Herkomst</dt><dd id="d-source"></dd></div>
         </dl>
 
