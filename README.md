@@ -343,10 +343,6 @@ is, ook als hij ooit ergens anders komt te staan.
   een `Content-Length` maar geen `Last-Modified`. De downloader kan dan niet
   weten of de lokale kopie nog klopt en haalt hem elke run opnieuw op. De cache
   in `bin/data/` helpt dus alleen bij bronnen die het wél vertellen.
-- **De ARK-keten van LDmax.** Veel bronnen publiceren hun manifest-IRI als
-  `n2t.net/ark:…`, dat via arks.org en de bron uitkomt bij `www.ldmax.nl`. De
-  307 daar mist een CORS-header, waardoor geen browser bij het manifest kan —
-  zie [CORS](#cors). Server-side valt er niets van te merken.
 - **HTML-entiteiten in labels.** Sommige manifest-labels bevatten letterlijk
   `&nbsp;`. Dat komt zo uit de bron; labels worden bewust niet herschreven.
 
