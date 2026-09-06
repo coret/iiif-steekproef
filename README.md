@@ -166,6 +166,62 @@ heap-limiet aan en stierf het proces. `flat()` in `bin/src/distribution.ts` maak
 daarom van elke URI een platte kopie voor hij wordt bewaard. Zonder die regel
 schaalt deze route niet voorbij een dump of wat.
 
+## CORS
+
+De sampler haalt alles met Node op, en Node houdt zich niet aan CORS. Een
+bezoeker merkt dus iets wat de sampler niet kan ondervinden: staat de bron de
+browser niet toe, dan blijft de viewer leeg terwijl er niets mis is met het
+manifest.
+
+Wat de browser wél en niet nodig heeft:
+
+- **Het manifest** haalt Tify met `fetch` op — dat heeft CORS nodig.
+- **`info.json`** van de Image API haalt OpenSeadragon met XHR op — dat heeft
+  CORS nodig, en het kan apart geweigerd worden terwijl het manifest wél mag.
+- **De beeldtegels zelf** niet: Tify laat OpenSeadragon op `crossOriginPolicy:
+  false` staan, dus tegels laden als gewone `<img>`.
+
+### Elke hop telt, niet alleen de laatste
+
+Een naïeve controle — één `fetch`, kijken of het antwoord een
+`Access-Control-Allow-Origin` heeft — geeft hier een vals goed nieuws. Node
+volgt redirects stilzwijgend, dus je kijkt naar de láátste response, en juist
+een tussenstap is vaak het probleem.
+
+Het geval dat dit aan het licht bracht: manifest-IRI's die via een ARK lopen.
+
+| # | response | ACAO |
+|---|---|---|
+| 1 | `n2t.net/ark:…/iiif.json` → 302 → arks.org | `*` |
+| 2 | `arks.org/…` → 302 → `data.<bron>.nl` | aanwezig |
+| 3 | `data.<bron>.nl/…` → 308 → `www.ldmax.nl/ark:…?host=…` | `*` |
+| 4 | `www.ldmax.nl/ark:…?host=…` → 307 → `/organisaties/…/iiif.jsonld?term=…` | **ontbreekt** |
+| 5 | eindadres → 200 | `*` |
+
+Alleen stap 4 mist de header, en dat is genoeg: bij een CORS-verzoek
+controleert de browser élke response in de keten. Het eindadres is prima — wie
+dat rechtstreeks ophaalt merkt niets — maar via de ARK komt geen browser erbij.
+
+Daarom loopt `browserCanFetch()` in `bin/src/manifests.ts` de keten zelf af met
+`redirect: 'manual'` (in Node levert dat de echte 3xx-response mét headers op)
+en toetst elke hop. Met één regel die makkelijk over het hoofd wordt gezien:
+**zodra een redirect van origin wisselt, stuurt de browser `Origin: null`.** Een
+server die de origin terugkaatst helpt vanaf dat punt dus niet meer; alleen `*`
+komt er nog doorheen.
+
+Wordt de browser geweigerd, dan staat op de dataset-kaart wáár het misging —
+stap, host en status — zodat een lege viewer verklaard is in plaats van
+raadselachtig.
+
+### Waarom we het niet omzeilen
+
+Het eindadres is in één hop gewoon op te halen, dus we zouden de opgeloste URL
+kunnen publiceren in plaats van de ARK. Dat doen we bewust niet: het probleem
+ligt bij de bron, het is daar gemeld, en een ARK in de collection vervangen
+door een vluchtig eindadres levert een werkende viewer op ten koste van precies
+de persistente identifier waar het om begonnen was. Proxyen via dit domein valt
+om dezelfde reden af — dan serveren we andermans data onder onze naam.
+
 ## Tify
 
 Tify opent op de **collectieweergave**: de bladerlijst met alle manifesten in de
