@@ -195,12 +195,13 @@ Het geval dat dit aan het licht bracht: manifest-IRI's die via een ARK lopen.
 | 1 | `n2t.net/ark:…/iiif.json` → 302 → arks.org | `*` |
 | 2 | `arks.org/…` → 302 → `data.<bron>.nl` | aanwezig |
 | 3 | `data.<bron>.nl/…` → 308 → `www.ldmax.nl/ark:…?host=…` | `*` |
-| 4 | `www.ldmax.nl/ark:…?host=…` → 307 → `/organisaties/…/iiif.jsonld?term=…` | **ontbreekt** |
+| 4 | `www.ldmax.nl/ark:…?host=…` → 307 → `/organisaties/…/iiif.jsonld?term=…` | ontbrak* |
 | 5 | eindadres → 200 | `*` |
 
-Alleen stap 4 mist de header, en dat is genoeg: bij een CORS-verzoek
-controleert de browser élke response in de keten. Het eindadres is prima — wie
-dat rechtstreeks ophaalt merkt niets — maar via de ARK komt geen browser erbij.
+Alleen stap 4 miste de header (* het gevonden issue werd na melding binnen een
+uur opgelost), en dat is genoeg: bij een CORS-verzoek controleert de browser
+élke response in de keten. Het eindadres is prima — wie dat rechtstreeks
+ophaalt merkt niets — maar via de ARK komt geen browser erbij.
 
 Daarom loopt `browserCanFetch()` in `bin/src/manifests.ts` de keten zelf af met
 `redirect: 'manual'` (in Node levert dat de echte 3xx-response mét headers op)
@@ -216,11 +217,12 @@ raadselachtig.
 ### Waarom we het niet omzeilen
 
 Het eindadres is in één hop gewoon op te halen, dus we zouden de opgeloste URL
-kunnen publiceren in plaats van de ARK. Dat doen we bewust niet: het probleem
-ligt bij de bron, het is daar gemeld, en een ARK in de collection vervangen
-door een vluchtig eindadres levert een werkende viewer op ten koste van precies
-de persistente identifier waar het om begonnen was. Proxyen via dit domein valt
-om dezelfde reden af — dan serveren we andermans data onder onze naam.
+kunnen publiceren in plaats van de ARK. Dat doen we bewust niet: zo'n probleem
+ligt bij de bron en hoort daar gemeld en opgelost te worden, en een ARK in de
+collection vervangen door een vluchtig eindadres levert een werkende viewer op
+ten koste van precies de persistente identifier waar het om begonnen was.
+Proxyen via dit domein valt om dezelfde reden af — dan serveren we andermans
+data onder onze naam.
 
 ## Tify
 
