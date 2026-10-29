@@ -363,7 +363,12 @@ is, ook als hij ooit ergens anders komt te staan.
   bewust niet omzeild: een
   manifest dat alleen een browser mag ophalen is voor viewers en harvesters
   onbruikbaar, en een manifest dat niet openbaar is hoort niet in de DKG. Dat
-  is iets voor de bron, of voor NDE.
+  is iets voor de bron, of voor NDE. De challenge raakt overigens niet alleen
+  de manifesten maar alle linked data op die hosts, tot en met de
+  datacatalogus en de ARK's; volgens de DKG-steekproef gaat het om 13 hosts,
+  zo'n 20 organisaties en minstens 35 datasets, en NDE's eigen crawler komt er
+  wél doorheen. Het volledige onderzoek, met deelbare curl-voorbeelden, staat
+  in `cloudflare.md`, dat buiten de repository blijft.
 - **Te veel tegelijk is te veel.** Alle manifesten van één dataset staan bij
   dezelfde server. Met vijf gelijktijdige verzoeken liep bij `Krantenpaginas`
   (Coda Apeldoorn) 4 van de 9 manifesten in een time-out; met twee laadden ze

@@ -6,3 +6,6 @@ bin/data/
 # De publicatiemap wordt volledig gegenereerd — elke run schrijft alle
 # collections, index.html en de ledgers opnieuw. Niets om te versiebeheren.
 root/
+
+# Onderzoeksverslag over Cloudflare-challenges bij bronnen: lokaal, niet gepubliceerd.
+cloudflare.md
