@@ -81,14 +81,16 @@ vastgelegd. Die run leverde **55 datasets met 433 manifesten** op; overgeslagen:
 
 De run van 29 oktober 2026 (146 datasets, na een nieuwe zoekronde met
 `src/discover.ts`) viel veel magerder uit: de DKG kende nog maar van **50
-datasets manifesten**, samen 249 IRI's, en het resultaat was **19 datasets met
-78 manifesten**, 128 overgeslagen. Van die 128 misten er 96 manifest-IRI's in de
-DKG; bij 17 gaf elk manifest een HTTP-fout, veertien keer een 403 van een
-Atlantis-host (zie
-[Bekende eigenaardigheden](#bekende-eigenaardigheden-van-bronnen)). CORS
-blokkeerde deze keer nergens meer: het ARK-probleem van augustus was intussen
-opgelost. Die verhouding schommelt dus per run: dezelfde bronnen geven niet
-elke dag hetzelfde antwoord, en wat NDE in de DKG vastlegt verschuift mee.
+datasets manifesten**, samen 249 IRI's, en het resultaat was **18 datasets met
+73 manifesten**, 129 overgeslagen. Van die 129 misten er 96 manifest-IRI's in de
+DKG; bij 17 gaf elk manifest een HTTP-fout: negen keer een Cloudflare-challenge
+en vijf keer een "document niet openbaar", allebei op Atlantis-hosts (zie
+[Bekende eigenaardigheden](#bekende-eigenaardigheden-van-bronnen)), en drie
+keer een 404. CORS blokkeerde deze keer nergens meer: het ARK-probleem van
+augustus was intussen opgelost. Die verhouding schommelt dus per run: dezelfde
+bronnen geven niet elke dag hetzelfde antwoord (een tweede run dezelfde ochtend
+verloor één dataset aan een time-out), en wat NDE in de DKG vastlegt verschuift
+mee.
 
 ## Fouten zichtbaar maken
 
@@ -100,6 +102,14 @@ verdwijnt geen enkele afkeuring in het log.
   reden, en bij een HTTP-fout de status. Die staan in `catalogs.json` en
   verschijnen onder de kerngegevens van de dataset op de pagina — "HTTP 404",
   "time-out", "laadt niet in een viewer", "geen inhoud".
+- **Een 403 is zelden zomaar een 403.** `classifyRefusal()` in
+  `bin/src/manifests.ts` kijkt bij een 403 naar headers en body. Staat er
+  `cf-mitigated: challenge`, dan is het een Cloudflare-challenge
+  (`bot-challenge`): de bron laat geen enkele niet-browser toe. Anders is het
+  de applicatie zelf die weigert (`not-public`), en de melding uit de JSON-body
+  (Atlantis: `{"Message": "..."}`) gaat mee in de `Rejection` en op de pagina:
+  "niet openbaar (HTTP 403): The document is not moderated." Zo staan die twee
+  in de foutenlijst in aparte groepen in plaats van samen onder "HTTP-fout".
 - **Geen inhoud** is een eigen controle, geen oordeel van de validator: een
   manifest zonder canvas komt door `normalize()` heen maar valt in een viewer
   leeg open. Voor wie de steekproef bekijkt is dat net zo goed een fout.
@@ -109,8 +119,9 @@ verdwijnt geen enkele afkeuring in het log.
   stond nergens meer.
 - **Gegroepeerd per soort probleem**, met het aantal in de kop: geen
   manifest-IRI's in de DKG, geen enkel manifest dat laadt (uitgesplitst naar
-  HTTP-fout, laadt niet in een viewer, time-out, server onbereikbaar,
-  verschillende oorzaken), of anders mislukt. De run zet die categorie zelf in
+  HTTP-fout, Cloudflare-challenge, document niet openbaar, laadt niet in een
+  viewer, time-out, server onbereikbaar, verschillende oorzaken), of anders
+  mislukt. De run zet die categorie zelf in
   de ledger (`category` en `detail`); staat hij er niet in, dan leidt de pagina
   hem uit de melding af. Binnen een groep waarin elke melding hetzelfde zegt,
   vervalt die tekst per regel — dat scheelt bij de grootste groep vijftig keer
@@ -346,7 +357,10 @@ is, ook als hij ooit ergens anders komt te staan.
   Atlantis zelf, als JSON: "The document is not publicly available", "The
   document is not moderated", "Access to this image is forbidden" of kortweg
   "Forbidden". NDE heeft die IRI's dus ooit kunnen valideren, maar de documenten
-  zijn nu niet (meer) openbaar. Beide gevallen worden bewust niet omzeild: een
+  zijn nu niet (meer) openbaar. De foutenlijst houdt de twee sinds die run uit
+  elkaar (groepen "Cloudflare-challenge" en "document niet openbaar"), zie
+  [Fouten zichtbaar maken](#fouten-zichtbaar-maken). Beide gevallen worden
+  bewust niet omzeild: een
   manifest dat alleen een browser mag ophalen is voor viewers en harvesters
   onbruikbaar, en een manifest dat niet openbaar is hoort niet in de DKG. Dat
   is iets voor de bron, of voor NDE.

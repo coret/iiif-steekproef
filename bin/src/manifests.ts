@@ -136,6 +136,8 @@ export interface Rejection {
   reason: string;
   /** De HTTP-status, als de server er een gaf. */
   status?: number;
+  /** Wat de server er zelf bij zei, bij `not-public`: de melding uit de JSON. */
+  message?: string;
 }
 
 export interface SampleResult {
@@ -212,13 +214,18 @@ export async function sampleManifests(
       attempted++;
       inFlight++;
       try {
-        const { entry, reason, status } = await inspect(uri);
+        const { entry, reason, status, message } = await inspect(uri);
         onResult(uri, entry !== undefined, reason);
         if (entry) accepted.push({ order, entry });
         else {
           refused.push({
             order,
-            rejection: { uri, reason, ...(status === undefined ? {} : { status }) },
+            rejection: {
+              uri,
+              reason,
+              ...(status === undefined ? {} : { status }),
+              ...(message === undefined ? {} : { message }),
+            },
           });
         }
       } finally {
@@ -240,21 +247,71 @@ export async function sampleManifests(
   };
 }
 
+/**
+ * Wat er achter een 403 zit. Twee gevallen die niets met elkaar te maken
+ * hebben kregen anders hetzelfde label:
+ *
+ * - `bot-challenge`: een Cloudflare managed challenge. De server stuurt een
+ *   HTML-pagina "Just a moment..." met `cf-mitigated: challenge`; geen enkele
+ *   niet-browser komt erdoorheen, dus ook geen viewer of harvester.
+ * - `not-public`: de applicatie zelf weigert het document. Atlantis zegt dan
+ *   in JSON waarom: "The document is not publicly available", "The document
+ *   is not moderated", "Access to this image is forbidden". NDE heeft de IRI
+ *   ooit kunnen valideren, maar het document is nu niet (meer) openbaar.
+ *
+ * Elke andere status blijft een gewone `http-error`.
+ */
+interface Refusal {
+  reason: 'bot-challenge' | 'not-public';
+  message?: string;
+}
+
+export function classifyRefusal(response: Response, body: string): Refusal | undefined {
+  if (response.status !== 403) return undefined;
+  if (response.headers.get('cf-mitigated') === 'challenge') return { reason: 'bot-challenge' };
+  const message = serverMessage(body);
+  return message === undefined ? { reason: 'not-public' } : { reason: 'not-public', message };
+}
+
+/** De melding uit een JSON-body als `{"Message": "..."}`, zoals Atlantis die geeft. */
+function serverMessage(body: string): string | undefined {
+  try {
+    const parsed: unknown = JSON.parse(body);
+    if (typeof parsed !== 'object' || parsed === null) return undefined;
+    const message = (parsed as Record<string, unknown>)['Message'] ?? (parsed as Record<string, unknown>)['message'];
+    return typeof message === 'string' && message.trim() !== '' ? message.trim() : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 async function inspect(
   uri: string,
-): Promise<{ entry?: ManifestEntry; reason: string; status?: number }> {
+): Promise<{ entry?: ManifestEntry; reason: string; status?: number; message?: string }> {
   const bodies = new Map<string, string>();
   // De validator meldt alleen `http-error`; de status zelf komt uitsluitend
   // hier langs, en juist die maakt een 404 (weg) van een 503 (nu even niet)
   // te onderscheiden.
   let status: number | undefined;
+  let refusal: Refusal | undefined;
   const cachingFetch: typeof globalThis.fetch = async (input, init) => {
     const headers = new Headers(init?.headers);
     headers.set('user-agent', USER_AGENT);
     const response = await fetch(input, { ...init, headers });
     const url = String(typeof input === 'string' ? input : (input as Request).url ?? input);
     if (url === uri) status = response.status;
-    if (!response.ok) return response;
+    if (!response.ok) {
+      if (url !== uri) return response;
+      // Een 403 is zelden zomaar een 403: de body en de headers zeggen wie er
+      // weigert. Eenmaal lezen en een verse kopie teruggeven.
+      const text = await response.text();
+      refusal = classifyRefusal(response, text);
+      return new Response(text, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      });
+    }
     // Body eenmaal lezen en bewaren, en een verse kopie teruggeven — zo hoeven
     // we het manifest niet nog een keer op te halen voor label en thumbnail.
     const text = await response.text();
@@ -268,7 +325,12 @@ async function inspect(
 
   const verdict = await validateManifest(uri, { fetch: cachingFetch, timeoutMs: 15_000 });
   const seen = status === undefined ? {} : { status };
-  if (!verdict.valid) return { reason: verdict.reason, ...seen };
+  if (!verdict.valid) {
+    if (verdict.reason === 'http-error' && refusal !== undefined) {
+      return { reason: refusal.reason, ...seen, ...(refusal.message === undefined ? {} : { message: refusal.message }) };
+    }
+    return { reason: verdict.reason, ...seen };
+  }
 
   const body = bodies.get(uri) ?? [...bodies.values()][0];
   if (!body) return { reason: 'no-body', ...seen };

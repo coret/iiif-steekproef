@@ -341,6 +341,13 @@ function whyLabel(rejection: Rejection): string {
   if (rejection.reason === 'http-error') {
     return rejection.status === undefined ? 'HTTP-fout' : 'HTTP ' + rejection.status;
   }
+  // Twee soorten 403 die niets met elkaar te maken hebben: zie classifyRefusal().
+  if (rejection.reason === 'bot-challenge') return 'Cloudflare-challenge (HTTP 403)';
+  if (rejection.reason === 'not-public') {
+    return rejection.message === undefined
+      ? 'niet openbaar (HTTP 403)'
+      : 'niet openbaar (HTTP 403): ' + rejection.message;
+  }
   const labels: Record<string, string> = {
     timeout: 'time-out',
     'network-error': 'server onbereikbaar',
@@ -462,6 +469,8 @@ const CATEGORY_LABELS: Record<FailureCategory, string> = {
 
 const DETAIL_LABELS: Record<string, string> = {
   'http-error': 'HTTP-fout',
+  'bot-challenge': 'Cloudflare-challenge weigert elke niet-browser',
+  'not-public': 'document niet openbaar (403 van de bron zelf)',
   'does-not-load': 'laadt niet in een viewer',
   timeout: 'time-out',
   'network-error': 'server onbereikbaar',
