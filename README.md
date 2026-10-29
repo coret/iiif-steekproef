@@ -72,16 +72,23 @@ waar hij nog wél de enige weg is.
 
 Wat het kost: de DKG legt **hoogstens tien manifesten per dataset** vast, en
 elke run zijn dat dezelfde tien. Het is dus NDE's steekproef en niet elke keer
-een verse eigen greep. Van de 135 datasets in `bin/datasets.txt` hebben er
-**84 manifesten in de DKG**, samen 673 IRI's; bij de overige 51 heeft NDE's
-IIIF-validatie wél gedraaid maar geen enkel manifest vastgelegd.
+een verse eigen greep. Bij de run van 26 augustus 2026 hadden van de 135
+datasets in `bin/datasets.txt` er **84 manifesten in de DKG**, samen 673 IRI's;
+bij de overige 51 had NDE's IIIF-validatie wél gedraaid maar geen enkel manifest
+vastgelegd. Die run leverde **55 datasets met 433 manifesten** op; overgeslagen:
+80. Daarvan was 34 van de 55 in een browser onbereikbaar door de ARK-keten, zie
+[CORS](#cors).
 
-De run van 26 augustus 2026 leverde daarmee **55 datasets met 433 manifesten**
-op; overgeslagen: 80 — de 51 zonder manifest-IRI's, plus de rest waarvan géén
-enkel manifest laadde. Die verhouding schommelt per run: dezelfde bronnen geven
-niet elke dag hetzelfde antwoord, dus een time-out of een 404 meer of minder
-verschuift de telling. Daarvan is **34 van de 55** in een browser onbereikbaar
-door de ARK-keten — zie [CORS](#cors).
+De run van 29 oktober 2026 (146 datasets, na een nieuwe zoekronde met
+`src/discover.ts`) viel veel magerder uit: de DKG kende nog maar van **50
+datasets manifesten**, samen 249 IRI's, en het resultaat was **19 datasets met
+78 manifesten**, 128 overgeslagen. Van die 128 misten er 96 manifest-IRI's in de
+DKG; bij 17 gaf elk manifest een HTTP-fout, veertien keer een 403 van een
+Atlantis-host (zie
+[Bekende eigenaardigheden](#bekende-eigenaardigheden-van-bronnen)). CORS
+blokkeerde deze keer nergens meer: het ARK-probleem van augustus was intussen
+opgelost. Die verhouding schommelt dus per run: dezelfde bronnen geven niet
+elke dag hetzelfde antwoord, en wat NDE in de DKG vastlegt verschuift mee.
 
 ## Fouten zichtbaar maken
 
@@ -112,7 +119,7 @@ verdwijnt geen enkele afkeuring in het log.
   `datasetregister.netwerkdigitaalerfgoed.nl/dataset?uri=…`, in een venster met
   een vaste naam, zodat een rij aflopen niet twintig tabbladen oplevert.
 - **Zelf nakijken.** Achter elke overgeslagen dataset staat een **SPARQL**-link
-  naar [YASGUI](https://yasgui.coret.org/), met het DKG-endpoint en een query
+  naar [MatGUI](https://matgui.coret.org/), met het DKG-endpoint en een query
   die de manifest-IRI's van precies die dataset opvraagt. Geen resultaten is
   daar een antwoord en geen storing: dan kent de DKG er geen. Komen er wél
   IRI's uit, dan ligt het aan de manifesten zelf — de reden ernaast zegt welke.
@@ -328,6 +335,21 @@ is, ook als hij ooit ergens anders komt te staan.
   of null*; alle tien manifesten die de DKG van die dataset kent lopen daarop
   stuk, dus die dataset valt in zijn geheel af. Zulke manifesten renderen in
   geen enkele Vault-viewer, dus stap 3 filtert ze eruit en meldt het.
+- **403 van Atlantis-hosts, om twee redenen.** Bij de run van 29 oktober 2026
+  gaf op veertien datasets élk manifest dat de DKG kent een 403, allemaal op
+  Atlantis-installaties van DeventIT. Daar zitten twee verschillende dingen
+  achter. Vier hosts (`atlantislite.deventit.nl`, `collecties.zuidafrikahuis.nl`,
+  `zoeken.collectiezeeland.nl`, `zoeken.geheugenvanzoetermeer.nl`) staan achter
+  een Cloudflare managed challenge: elke niet-browser krijgt een HTML-pagina
+  "Just a moment..." met `cf-mitigated: challenge`, ook met de eigen User-Agent
+  van de sampler en ook met `curl`. Bij de overige hosts komt de 403 uit
+  Atlantis zelf, als JSON: "The document is not publicly available", "The
+  document is not moderated", "Access to this image is forbidden" of kortweg
+  "Forbidden". NDE heeft die IRI's dus ooit kunnen valideren, maar de documenten
+  zijn nu niet (meer) openbaar. Beide gevallen worden bewust niet omzeild: een
+  manifest dat alleen een browser mag ophalen is voor viewers en harvesters
+  onbruikbaar, en een manifest dat niet openbaar is hoort niet in de DKG. Dat
+  is iets voor de bron, of voor NDE.
 - **Te veel tegelijk is te veel.** Alle manifesten van één dataset staan bij
   dezelfde server. Met vijf gelijktijdige verzoeken liep bij `Krantenpaginas`
   (Coda Apeldoorn) 4 van de 9 manifesten in een time-out; met twee laadden ze

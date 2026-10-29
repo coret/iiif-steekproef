@@ -354,7 +354,7 @@ function whyLabel(rejection: Rejection): string {
   return labels[rejection.reason] ?? rejection.reason;
 }
 
-const YASGUI = 'https://yasgui.coret.org/';
+const YASGUI = 'https://matgui.coret.org/';
 
 /**
  * De datasetpagina in het NDE Dataset Register. In de foutenlijst is dat een

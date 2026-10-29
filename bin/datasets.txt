@@ -408,3 +408,38 @@ https://n2t.net/ark:/81061/dataset
 
 # Metadata erfgoedobjecten Data-Doe-Dag — 1 manifesten
 https://omeka.netwerkdigitaalerfgoed.nl/api/items/43
+
+# --- gevonden met src/discover.ts op 29 oktober 2026 ---
+
+# Amsterdam Museum — 86.136 manifesten
+https://data.amsterdammuseum.nl/ark:/50282/collectie
+
+# Museum Rotterdam – museum objecten — 55.817 manifesten
+https://collectie.museumrotterdam.nl/AtlantisPubliek/data/dataset/Museum+Rotterdam+%e2%80%93+museum+objecten
+
+# Cultuurhistorische collectie Hellevoetsluis — 23.462 manifesten
+https://collectie.fortresseholland.nl/AtlantisPubliek/data/dataset/Cultuurhistorische+collectie+Hellevoetsluis
+
+# Valkhof museum - Museum objecten — 3.708 manifesten
+https://collectie.valkhofmuseum.nl/AtlantisPubliek/data/dataset/Valkhof+museum+-+Museum+objecten
+
+# Oorlogsdoden van en in gemeente Venlo 1940-1949 — 511 manifesten
+https://collecties.venlo.nl/AtlantisPubliek/data/dataset/Oorlogsdoden+van+en+in+gemeente+Venlo+1940-1949
+
+# Museum Buurtspoorweg - Objecten — 207 manifesten
+https://mbs.hosting.deventit.net/AtlantisPubliek/data/dataset/Museum+Buurtspoorweg+-+Objecten
+
+# Historische Vereniging Maassluis Oorlogvoering — 134 manifesten
+https://maas.hosting.deventit.net/AtlantisPubliek/data/dataset/Historische+Vereniging+Maassluis+Oorlogvoering
+
+# Tweede Wereldoorlog — 35 manifesten
+https://collecties.chabotmuseum.nl/AtlantisPubliek/data/dataset/Tweede+Wereldoorlog
+
+# Merchant navy in World War II — 25 manifesten
+https://collectie.hetscheepvaartmuseum.nl/datacatalog/wo2
+
+# Oude Kerk — 5 manifesten
+https://n2t.net/ark:/11634/dataset
+
+# MHM - Moluks Historisch Museum - Verhalen — 1 manifesten
+https://collecties.museum-maluku.nl/AtlantisPubliek/data/dataset/MHM+-+Moluks+Historisch+Museum+-+Verhalen
